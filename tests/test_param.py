@@ -20,6 +20,7 @@ def mock_env(monkeypatch):
     monkeypatch.setenv("ACTIVATE_FEATURE", "true")
     monkeypatch.setenv("COLOUR_BLUE", "blue")
     monkeypatch.setenv("COLOUR_YELLOW", "yellow")
+    monkeypatch.setenv("FLOAT", "3.141")
     monkeypatch.setenv("C1_STR", "C1")
     monkeypatch.setenv("C2_STR", "C2")
     monkeypatch.setenv("C3_STR", "C3")
@@ -155,7 +156,7 @@ def test_float_public_type():
 
 def test_float_parse():
     f = param.Float()
-    value = f("3.141")
+    value = f("FLOAT")
     assert value == 3.141
     assert type(value) is float
 
