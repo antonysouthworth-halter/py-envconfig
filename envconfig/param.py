@@ -1,4 +1,5 @@
 import os
+import pathlib
 from abc import ABC, abstractmethod
 from datetime import datetime, timedelta
 
@@ -10,6 +11,7 @@ class Types(pyEnum):
     Int = "Int"
     Bool = "Bool"
     Enum = "Enum"
+    Path = "Path"
     Float = "Float"
     Config = "Config"
     Datetime = "Datetime"
@@ -160,3 +162,9 @@ class Timedelta(Param):
         units = name.split('_')[-1].lower()
         td = timedelta(**{units: converted})
         return td
+
+
+class Path(Param):
+    def _cast(self, value):
+        path = pathlib.Path(value)
+        return path
